@@ -71,8 +71,7 @@ blockquote {
 /* IMAGES */
 
 .image-left {
-  /*position: absolute;*/
-  left: 30px;
+  left: -120px;
   width: 150px;
   background-color: #000;
   margin:10px;
@@ -81,12 +80,14 @@ blockquote {
   z-index: 0;
   -moz-filter: blur(0px);
   -webkit-filter: blur(0px);
+  position: relative;
+  page-break-inside:avoid;
 }
 
 .image-right   {
-  /*position: absolute;*/
-  right: 0%;
-  left: 30px;
+  position: relative;
+  /*right: 0%;*/
+  left: -120px;
   width: 150px;
   background-color: #000;
   margin:10px;
@@ -96,16 +97,37 @@ blockquote {
   -moz-filter: blur(0px);
   -webkit-filter: blur(0px);
 }
+.evil-spirits{
+  margin-top:-300px !important;
+}
+.sjaal{
+  top:90px !important;
+}
+.obama{
+  top:420px !important;
+}
 
 .video   {
-  display: none;
-  position: absolute;
-  right: 10%;
-  width: 560px;
+  position: relative;
+  right: -160px;
+  float:right;
+  width: 190px;
   background-color: #000;
   margin:15px;
   margin-top: -200px;
   padding: 15px;
+  opacity: 1;
+  z-index: 0;
+  -moz-filter: blur(0px);
+  -webkit-filter: blur(0px);
+}
+.video > iframe {
+  display:none;
+}
+.video.alice-in-wonderland{
+  margin-top:-230px;
+}
+.glass{
 }
 
 img {
@@ -114,6 +136,28 @@ img {
 }
 
 
+
+/*FOOTNOTES*/
+
+.footnote{
+  display:block;
+  right:-270px;
+  page-break-inside:avoid;
+}
+blockquote .footnote {
+  right:-265px;  
+}
+  .footnote a{
+    display:none;
+  }
+
+
+.p-een-van-de-kenmerken{
+  /*margin-top:-180px;*/
+}
+.p-het-bovenstaande{
+  /*margin-top:-190px;*/
+}
 
 /*PAGENUMERS*/
 

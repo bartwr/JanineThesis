@@ -1,66 +1,100 @@
-// dit is de footnote code!!
-// $(function(){
 
-//   $('.toggle-footnote').on('click', function(e){
-    
-//     var cutepigs = $('.footnote[data-id=' + $(e.target).text() + ']'); 
-
-//     if(cutepigs).is(':visible').addClass('')
-
-//     e.preventDefault();
-//     $('.footnote').hide(){
-//     };
-
-//     cutepigs.toggle();
-//     cutepigs.css('top', e.pageY);
-    
-//   })
-
-// });
+/**
+ * Footnotes
+ */
 
 $(function(){
+
+  //Give every toggle button a 'rel=ID'.
+  $('.footnote-toggle').each(function(){
+    $(this).attr( 'data-id', $(this).text() );
+  });
+
+  //Get all footnotes and loop those
+  var footnote, footnote_bottom, diff, latest_footnote_bottom;
+  $('.footnote').each(function(){
+
+    //Now move this footnote to the footnote-wrapper
+    $(this)
+      .appendTo( $('.footnote-toggle[data-id='+$(this).data('id')+']') )
+      .changeElementType('span');
+
+    //And create some space if an footnote was already on that position.
+    footnote = $('.footnote[data-id='+$(this).data('id')+']') 
+    diff = footnote.offset().top - latest_footnote_bottom;
+    
+    if(diff <= 10){
+      footnote.css( 'margin-top', -40 +30 -diff );
+    }
+
+    if( footnote.hasClass('mehrabian') ){
+      footnote.css( 'margin-top', -40 +10 );
+    }
+    if( footnote.hasClass('van-hoek') ){
+      footnote.css( 'margin-top', -40 +30 );
+    }
+    if( footnote.hasClass('bill-moyers') ){
+      footnote.css( 'margin-top', -40 +10 );
+    }
+    if( footnote.hasClass('popkin') ){
+      footnote.css( 'margin-top', -40 +40 );
+    }
+    if( footnote.hasClass('honan') ){
+      footnote.css( 'margin-top', -40 +10 );
+    }
+    if( footnote.hasClass('term-uit-de-psychologie') ){
+      footnote.css( 'margin-top', -40 +40  );
+    }
+    // if( footnote.hasClass('indica') ){
+    //   footnote.css( 'margin-top', -40 +40  );
+    // }
+    if( footnote.hasClass('adam-s') ){
+      footnote.css( 'margin-top', -40 +40  );
+    }
+
+    latest_footnote_bottom = footnote.offset().top + footnote.height();
+
+  });
+
+});
   
-  //op de klik van toggle-footnote: doe iets
-  $('.toggle-footnote').on('click', function(e){
+$(function(){
 
-    var footnote = cutepigs = $('.footnote[data-id=' + $(e.target).text() + ']'); 
+  //Op de klik van footnote-toggle: doe iets.
+  $('.footnote-toggle').on('click', function(e){
 
-    //sowieso niet de href volgen!
+    if( ! $(e.target).hasClass('footnote-toggle') )
+      return;
+
+    var footnote = $('.footnote[data-id=' + $(this).data('id') + ']');
+
+    //Sowieso niet de href volgen!
     e.preventDefault();
 
+    //Loop alle footnotes langs.
     $('.footnote').each(function(){
 
-      //als deze aan is, zet deze dan niet uit
+      //En als het niet de footnote is waar je op klikte...
       if( footnote.data('id') != $(this).data('id') ){
+        // ... verberg dan de footnote.
         $(this).hide();
       }
 
     });
 
-    // bepaal positie van de div. die vervolgens laat zien.
-    cutepigs.css('top', e.pageY);
-    cutepigs.toggle();
+    //En laat die footnote vervolgens zien.
+    footnote.toggle();
 
   });
   
 });
 
-//dit is op de plek zet code!!
-  // $(function(){
-
-  //   $('.toggle-footnote').each(function(){
-
-  //     console.log($(this).offset());
-
-  //     $('.footnote[data-id=' + $(this).text() + ']').css('top', $(this).offset().top - $(window).scrollTop() );
-
-  //   });
-
-  // });
 
 
+/**
+ * Voor de navigatie
+ */ 
 
-//voor de navigatie 
 $(function(){
 
   $('#menu-lijst a').on('click', function(e){
@@ -68,8 +102,10 @@ $(function(){
     //Volg de href niet.
     e.preventDefault();
 
+    //Haal de href (is gelijk aan het ID van de div) op.
     var item = $(e.target).attr('href');
 
+    //Scroll naar de div.
     $('body').scrollTo( $(item), 1200, {
       offset: - 25
     });
@@ -77,6 +113,7 @@ $(function(){
   });
 
 });
+
 
 
 // parallax op img?

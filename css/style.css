@@ -20,6 +20,7 @@ body {
   padding-bottom: 400px;
   width: 70%;
   margin: 0 auto;
+  position: relative;
 }
 
 #print {
@@ -251,34 +252,50 @@ nav {
 /* alles met footnotes */
 /*---------------------*/
 
-.toggle-footnote::before{
+.footnote-toggle{
+  cursor:pointer;
+  max-width: 20px;
+  max-height: 12px;
+  line-height: 12px;
+  vertical-align: top;
+  display:inline-block;
+}
+.footnote-toggle::before{
   content: "[";
 }
-.toggle-footnote::after{
+.footnote-toggle::after{
   content: "]";
 }
 
 .footnote {
   display: none;
-  position: absolute;
+  cursor:default;
   background-color: #000;
   font-size: 12px;
   line-height: 14px;
   color: #fff;
   width: 200px;
   padding:10px;
-  right: 30px;
   margin-top: -40px;
+
+  float:right;
+  right:-300px;
+  position:absolute;
+  clear:both;
+
+}
+blockquote .footnote {
+  right:-285px;  
 }
 
 p>a {
-  position: relative;
+  /*position: relative;*/
   font-size: 10px;
   top: -7px;
 }
 
 blockquote>a {
-  position: relative;
+  /*position: relative;*/
   font-size: 10px;
   top: -15px;
 }
@@ -290,7 +307,7 @@ blockquote>a {
 
 .image-left {
   position: absolute;
-  left: 10%;
+  left: -7%%;
   width: 300px;
   background-color: #000;
   margin:15px;
@@ -303,7 +320,7 @@ blockquote>a {
 
 .image-right   {
   position: absolute;
-  right: 10%;
+  right: -7.5%;
   width: 300px;
   background-color: #000;
   margin:15px;
@@ -316,7 +333,7 @@ blockquote>a {
 
 .video   {
   position: absolute;
-  right: 10%;
+  right: -7.5%;
   width: 560px;
   background-color: #000;
   margin:15px;
@@ -327,6 +344,11 @@ blockquote>a {
   -moz-filter: blur(2px);
   -webkit-filter: blur(2px);
 }
+  .video > img{
+    clear:both;
+    display:block;
+    width:100%;
+  }
 
 .image-left:hover {
   opacity: 1;
